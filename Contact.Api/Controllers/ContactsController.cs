@@ -34,7 +34,7 @@ namespace Contact.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<WeatherForecast>> Insert([FromBody] Models.Contact contact)
+        public async Task<ActionResult<Models.Contact>> Insert([FromBody] Models.Contact contact)
         {
             var id = await _contactService.Insert(contact);
 
@@ -62,7 +62,7 @@ namespace Contact.Api.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<WeatherForecast>> Update(int id, [FromBody] Models.Contact contact)
+        public async Task<ActionResult<Models.Contact>> Update(int id, [FromBody] Models.Contact contact)
         {
             var result = await _contactService.Update(id, contact);
             if (result) return NoContent();
@@ -75,7 +75,7 @@ namespace Contact.Api.Controllers
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<WeatherForecast>> Delete(int id)
+        public async Task<ActionResult<Models.Contact>> Delete(int id)
         {
             var result = await _contactService.Delete(id);
 
