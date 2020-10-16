@@ -40,7 +40,7 @@ namespace Contact.Api.Controllers
 
             if (id != default) return Created("", await _contactService.FindOne(id));
 
-            _logger.LogDebug($"Bad POST request. Payload: {JsonConvert.SerializeObject(contact)}");
+            _logger.LogWarning($"[POST] Bad request. Payload: {JsonConvert.SerializeObject(contact)}");
             return BadRequest();
             
         }
@@ -54,7 +54,7 @@ namespace Contact.Api.Controllers
             var result = await _contactService.FindOne(id);
             if (result != default) return Ok(result);
 
-            _logger.LogDebug($"No contact found using Id {id}");
+            _logger.LogWarning($"[GET] No contact found using Id {id}");
             return NotFound();
         }
 
@@ -67,7 +67,7 @@ namespace Contact.Api.Controllers
             var result = await _contactService.Update(id, contact);
             if (result) return NoContent();
 
-            _logger.LogDebug($"No contact found using Id {id}");
+            _logger.LogWarning($"[PUT] No contact found using Id {id}");
             return NotFound();
         }
 
@@ -81,7 +81,7 @@ namespace Contact.Api.Controllers
 
             if (result) return NoContent();
 
-            _logger.LogDebug($"No contact found using Id {id}");
+            _logger.LogWarning($"[DELETE] No contact found using Id {id}");
             return NotFound();
         }
 
